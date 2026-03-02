@@ -64,25 +64,29 @@
     .hero-eyebrow {
       font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 1rem;
+      position: relative;
     }
     #hero h1 {
       font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 800; color: var(--white);
       line-height: 1.15; max-width: 780px;
       margin-bottom: 1.4rem;
+      position: relative;
     }
     #hero h1 span { color: var(--gold); }
     #hero p {
       font-size: 1.15rem; color: rgba(255,255,255,0.75);
       max-width: 620px; margin-bottom: 2.6rem;
+      position: relative;
     }
-    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; position: relative; }
     .btn-primary {
       background: var(--gold); color: var(--navy);
       padding: 0.9rem 2.2rem; border-radius: 4px;
       font-weight: 700; font-size: 0.95rem; letter-spacing: 0.04em;
       text-decoration: none; text-transform: uppercase;
       transition: opacity 0.2s, transform 0.2s;
+      cursor: pointer; display: inline-block;
     }
     .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
     .btn-outline {
@@ -90,7 +94,8 @@
       padding: 0.9rem 2.2rem; border-radius: 4px;
       font-weight: 600; font-size: 0.95rem; letter-spacing: 0.04em;
       text-decoration: none; text-transform: uppercase;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.2s, color 0.2s;
+      cursor: pointer; display: inline-block;
     }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
@@ -98,9 +103,9 @@
     .gold-bar { height: 4px; background: var(--gold); }
 
     /* ── SECTIONS ── */
-    section { padding: 90px 6%; }
-    section:nth-of-type(odd) { background: var(--white); }
-    section:nth-of-type(even) { background: var(--light); }
+    .section-block { padding: 90px 6%; }
+    .section-block:nth-of-type(odd) { background: var(--white); }
+    .section-block:nth-of-type(even) { background: var(--light); }
 
     .section-label {
       font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -115,7 +120,6 @@
       font-size: 1.05rem; color: var(--muted);
       max-width: 720px; line-height: 1.85;
     }
-    .section-body + .section-body { margin-top: 1rem; }
 
     /* ── TWO-COL ── */
     .two-col {
@@ -126,6 +130,7 @@
     }
     @media (max-width: 768px) {
       .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { gap: 1rem; }
     }
 
     /* ── VALUE CARDS ── */
@@ -180,16 +185,15 @@
     .market-pill:hover { background: #162f5a; }
 
     /* ── CONTACT ── */
-    #contact { background: var(--navy); }
+    #contact { background: var(--navy) !important; }
     #contact .section-label { color: var(--gold); }
     #contact .section-title { color: var(--white); }
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 2.5rem;
       margin-top: 3rem;
     }
-    .contact-item { }
     .contact-item .ci-label {
       font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--gold); font-weight: 700; margin-bottom: 0.4rem;
@@ -217,28 +221,28 @@
   <nav>
     <div class="nav-logo">Omni<span>point</span> LTD</div>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#markets">Markets</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" onclick="event.preventDefault(); document.getElementById('about').scrollIntoView({behavior:'smooth'});">About</a></li>
+      <li><a href="#services" onclick="event.preventDefault(); document.getElementById('services').scrollIntoView({behavior:'smooth'});">Services</a></li>
+      <li><a href="#markets" onclick="event.preventDefault(); document.getElementById('markets').scrollIntoView({behavior:'smooth'});">Markets</a></li>
+      <li><a href="#contact" onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Contact</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
+  <div id="hero">
     <p class="hero-eyebrow">Market Research &amp; Technology Advisory</p>
     <h1>The Right Partner.<br/><span>At the Right Time.</span></h1>
     <p>Omnipoint LTD helps enterprises identify, evaluate, and source the technology solutions and trusted vendors needed to scale with confidence.</p>
     <div class="btn-group">
-      <a href="#about" class="btn-primary">Learn More</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+      <a href="#about" class="btn-primary" onclick="event.preventDefault(); document.getElementById('about').scrollIntoView({behavior:'smooth'});">Learn More</a>
+      <a href="mailto:info@omnipointltd.com" class="btn-outline">Get in Touch</a>
     </div>
-  </section>
+  </div>
 
   <div class="gold-bar"></div>
 
   <!-- ABOUT -->
-  <section id="about">
+  <div id="about" class="section-block">
     <div class="two-col">
       <div>
         <p class="section-label">Who We Are</p>
@@ -252,10 +256,10 @@
         <p class="section-body">Omnipoint LTD specializes in identifying and reviewing business-optimization interfaces and trusted third-party vendors to support global business continuity efforts. Our initial market research and rigorous partner vetting process are core to our value proposition — clients depend on our due diligence to streamline decision-making and avoid unnecessary time expenditure.</p>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- SERVICES -->
-  <section id="services">
+  <div id="services" class="section-block">
     <p class="section-label">What We Do</p>
     <h2 class="section-title">Our Core Services</h2>
     <p class="section-body">From initial assessment through procurement, Omnipoint LTD guides clients at every stage of the technology and vendor selection process.</p>
@@ -281,10 +285,10 @@
         <p>Leveraging global logistics resources to support business continuity and scalability for regional and international enterprises.</p>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- MARKETS -->
-  <section id="markets">
+  <div id="markets" class="section-block">
     <p class="section-label">Industries Served</p>
     <h2 class="section-title">Markets We Service</h2>
     <p class="section-body">While we support clients across a broad range of industries, we have particular concentration and deep expertise in the following sectors:</p>
@@ -297,10 +301,10 @@
       <div class="market-pill">Fashion</div>
       <div class="market-pill">Beauty</div>
     </div>
-  </section>
+  </div>
 
   <!-- CONTACT -->
-  <section id="contact">
+  <div id="contact" class="section-block">
     <p class="section-label">Reach Us</p>
     <h2 class="section-title">Let's Start a Conversation</h2>
     <p class="section-body" style="color:rgba(255,255,255,0.65);">Ready to find the right technology partner for your business? Omnipoint LTD is here to guide the way.</p>
@@ -322,7 +326,7 @@
         <p>Omnipoint LTD<br/>Market Research &amp; Technology Advisory</p>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
